@@ -1,0 +1,96 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D756F5DC-6CDB-4F97-AA9C-985EDB15AE44}|BillOfLading\\BillOfLading\\BillOfLading.csproj|c:\\users\\filip\\desktop\\aspdotnetcore_projects\\billoflading\\billoflading\\billoflading\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D756F5DC-6CDB-4F97-AA9C-985EDB15AE44}|BillOfLading\\BillOfLading\\BillOfLading.csproj|solutionrelative:billoflading\\billoflading\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D756F5DC-6CDB-4F97-AA9C-985EDB15AE44}|BillOfLading\\BillOfLading\\BillOfLading.csproj|c:\\users\\filip\\desktop\\aspdotnetcore_projects\\billoflading\\billoflading\\billoflading\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D756F5DC-6CDB-4F97-AA9C-985EDB15AE44}|BillOfLading\\BillOfLading\\BillOfLading.csproj|solutionrelative:billoflading\\billoflading\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A81A3A-4977-49D0-80A3-4E22B28BF743}|BillOfLading\\BillOfLading.Client\\BillOfLading.Client.csproj|c:\\users\\filip\\desktop\\aspdotnetcore_projects\\billoflading\\billoflading\\billoflading.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A81A3A-4977-49D0-80A3-4E22B28BF743}|BillOfLading\\BillOfLading.Client\\BillOfLading.Client.csproj|solutionrelative:billoflading\\billoflading.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A81A3A-4977-49D0-80A3-4E22B28BF743}|BillOfLading\\BillOfLading.Client\\BillOfLading.Client.csproj|c:\\users\\filip\\desktop\\aspdotnetcore_projects\\billoflading\\billoflading\\billoflading.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{38A81A3A-4977-49D0-80A3-4E22B28BF743}|BillOfLading\\BillOfLading.Client\\BillOfLading.Client.csproj|solutionrelative:billoflading\\billoflading.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "BillOfLading\\BillOfLading\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "BillOfLading\\BillOfLading\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-10T08:47:04.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "BillOfLading\\BillOfLading\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "BillOfLading\\BillOfLading\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-10T08:46:56.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading.Client\\Program.cs",
+              "RelativeDocumentMoniker": "BillOfLading\\BillOfLading.Client\\Program.cs",
+              "ToolTip": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading.Client\\Program.cs",
+              "RelativeToolTip": "BillOfLading\\BillOfLading.Client\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T08:46:45.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading.Client\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "BillOfLading\\BillOfLading.Client\\Pages\\Counter.razor",
+              "ToolTip": "C:\\Users\\filip\\Desktop\\AspDotNetCore_Projects\\BillOfLading\\BillOfLading\\BillOfLading.Client\\Pages\\Counter.razor",
+              "RelativeToolTip": "BillOfLading\\BillOfLading.Client\\Pages\\Counter.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-10T08:39:43.555Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
