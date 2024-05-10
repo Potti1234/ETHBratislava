@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button"
- 
+import MetamaskLoginButton from "@/components/metamaskLoginButton";
+
 export default function Home() {
   return (
     <div>
-      <Button>Click me</Button>
+      <MetamaskLoginButton/>
     </div>
   )
 }
