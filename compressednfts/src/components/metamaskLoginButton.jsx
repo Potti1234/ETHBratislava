@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import React, { useState } from 'react';
+import { Badge } from "./ui/badge";
 
 export default function MetamaskLoginButton() {
     const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
@@ -40,7 +41,11 @@ export default function MetamaskLoginButton() {
 
     return (
         <div>
-            <Button onClick={() => connectWithMetamask()}>Metamask Login</Button>
+            {isMetamaskConnected ? (
+                <Badge>{accounts[0]}</Badge>
+            ) : (
+                <Button onClick={() => connectWithMetamask()}>Metamask Login</Button>
+            )}
         </div>
     );
 }
