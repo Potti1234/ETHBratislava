@@ -1,8 +1,7 @@
+import NFTGallery from "@/components/NFTGallery";
 
 export default function Home() {
   return (
-    <div>
-      
-    </div>
+    <NFTGallery/>
   )
 }
