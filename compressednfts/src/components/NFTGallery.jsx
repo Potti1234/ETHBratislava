@@ -16,6 +16,7 @@ export default function NFTGallery({contractAddress}) {
         nftClient.load(contractAddress).then((con) => {
             setContract(con);
                 con.getAllTokens(false).then((res) => {
+                        res = res.slice(0, 100)
                         setData(res);
                         console.log(res);
                 })
@@ -31,7 +32,7 @@ export default function NFTGallery({contractAddress}) {
                             <NFTCard
                                 key={index}
                                 title={index.toString()}
-                                url={`http://localhost:3000/nfts/${index}.jpg`}
+                                url={item.url}
                                 address={item.owner.toLowerCase()}
                                 yourAddress={useContext(AccountContext)}
                                 contract={contract}

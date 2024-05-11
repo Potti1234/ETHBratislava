@@ -9,7 +9,7 @@ import { randomBytes } from 'crypto';
 
 export default function Page() {
 
-  const [nftUrl, setNftURL] = useState("http://localhost:3000/nfts/{}.jpg")
+  const [nftUrl, setNftURL] = useState("http://localhost:3000/nfts/{INDEX}.jpg")
   const [nftAmount, setNftAmount] = useState(10000)
   const [address, setAddress] = useState("0xdfe77057d88bbd5308056da6d6361c462b61a98e")
   const [nftAddressAmount, setNftAddressAmount] = useState(10)
@@ -35,7 +35,7 @@ export default function Page() {
 
   return (
     <div>
-      <Input type="text" onChangeCapture={e => setNftURL(e.currentTarget.value)} placeholder="Enter NFT URL" defaultValue="http://localhost:3000/nfts/{}.jpg" />
+      <Input type="text" onChangeCapture={e => setNftURL(e.currentTarget.value)} placeholder="Enter NFT URL" defaultValue="http://localhost:3000/nfts/{INDEX}.jpg" />
       <Input type="number" onChangeCapture={e => setNftAmount(e.currentTarget.value)} placeholder="Enter Amount of NFTS" defaultValue="10000"/>
       <Input type="text" onChangeCapture={e => setAddress(e.currentTarget.value)} placeholder="Address to mint to" defaultValue="0xdfe77057d88bbd5308056da6d6361c462b61a98e"/>
       <Input type="number" onChangeCapture={e => setNftAddressAmount(e.currentTarget.value)} placeholder="Enter Amount of NFTS for address" defaultValue="10"/>
