@@ -5,46 +5,41 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { NFTClientContext } from '@/components/containerContext';
+import { randomBytes } from 'crypto';
 
 export default function Page() {
 
-  const [indexUrl, setIndexUrl] = useState("http://localhost:3000/nfts/{}.jpg")
   const [nftUrl, setNftURL] = useState("http://localhost:3000/nfts/{}.jpg")
   const [nftAmount, setNftAmount] = useState(10000)
-  const [address, setAddress] = useState("")
-  const [contractAddress, setContractAddress] = useState("")
+  const [address, setAddress] = useState("0xdfe77057d88bbd5308056da6d6361c462b61a98e")
+  const [nftAddressAmount, setNftAddressAmount] = useState(10)
   const nftClient = useContext(NFTClientContext);
 
   const mintNFT = () => {
     console.log(nftClient);
-    const addressList = Array(nftAmount).fill(address);
+
+    const addressList = Array();
+    for (let i = 0; i < nftAmount; i++) {
+      addressList.push('0x'+randomBytes(20).toString('hex'));
+    }
+
+    addressList.fill(address, 0, nftAddressAmount);
+
     console.log("Minting NFTs: ", nftUrl, addressList);
 
     nftClient.mint(nftUrl, addressList).then((res) => {
       console.log("Minted NFTs: ", res);
-    })
-  }
-
-  const loadContract = () => { 
-    nftClient.load(contractAddress).then((res) => {
-      console.log("Loaded Contract: ", res);
+      window.location.href = "http://localhost:3000/ShowNFTs/" + res.contractAddress;
     })
   }
 
   return (
     <div>
-      <Input type="text" onChangeCapture={e => setIndexUrl(e.currentTarget.value)} placeholder="Enter Index URL" value="http://localhost:3000/nfts/{}.jpg" />
-      {nftClient === null ? (
-        <Button onClick={() => createNFTClient()}>Create NFT Client</Button>
-      ) : (
-        <Label>Client Created</Label>
-      )}
-      <Input type="text" onChangeCapture={e => setNftURL(e.currentTarget.value)} placeholder="Enter NFT URL" value="http://localhost:3000/nfts/{}.jpg" />
-      <Input type="number" onChangeCapture={e => setNftAmount(e.currentTarget.value)} placeholder="Enter Amount of NFTS" value="10000" />
-      <Input type="text" onChangeCapture={e => setAddress(e.currentTarget.value)} placeholder="Address to mint to"/>
+      <Input type="text" onChangeCapture={e => setNftURL(e.currentTarget.value)} placeholder="Enter NFT URL" defaultValue="http://localhost:3000/nfts/{}.jpg" />
+      <Input type="number" onChangeCapture={e => setNftAmount(e.currentTarget.value)} placeholder="Enter Amount of NFTS" defaultValue="10000"/>
+      <Input type="text" onChangeCapture={e => setAddress(e.currentTarget.value)} placeholder="Address to mint to" defaultValue="0xdfe77057d88bbd5308056da6d6361c462b61a98e"/>
+      <Input type="number" onChangeCapture={e => setNftAddressAmount(e.currentTarget.value)} placeholder="Enter Amount of NFTS for address" defaultValue="10"/>
       <Button onClick={() => mintNFT()}>Mint NFT</Button>
-      <Input type="text" onChangeCapture={e => setContractAddress(e.currentTarget.value)} placeholder="Address of deployed contract"/>
-      <Button onClick={() => loadContract()}>Load Contract</Button>
     </div>
   )
 }

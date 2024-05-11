@@ -18,7 +18,7 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "cnftevm": "^1.0.4",
+    "cnftevm": "^1.0.6",
     "csv-parser": "^3.0.0",
     "fs": "^0.0.1-security",
     "fs-extra": "^11.2.0",
