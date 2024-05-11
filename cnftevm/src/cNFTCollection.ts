@@ -2,7 +2,7 @@ import {BigNumber, Contract, UnsignedTransaction} from "ethers";
 import {Interface} from "ethers/lib/utils";
 import {IcNFT} from "./abis/IcNFT";
 import {cNFTClient} from "./cNFTClient";
-import {getMerkleRoot} from "./Utils";
+import {createMerkleTree, getMerkleProof, getMerkleRoot} from "./Utils";
 
 export type cNFTData = {
     owner: string,
@@ -82,6 +82,43 @@ export class cNFTCollection {
     /**
      * Call indexer to fetch owned tokens
      *
+     * @param tokenIndex
+     * @parma verify
+     */
+    async getTokensData(tokenIndex: number[], verify?: boolean): Promise<{
+        data: cNFTData,
+        proof: Buffer
+    }[]> {
+        const resp = await fetch(this.client.indexerUrl+"/"+this.contractAddress+"/tokens?indexes="+encodeURIComponent(tokenIndex.join(",")));
+
+        if(!resp.ok) throw new Error("Indexer error: "+await resp.text());
+
+        const obj: {
+            index: number,
+            proof: string,
+            owner: string
+        }[] = await resp.json();
+
+        //TODO: This doesn't check the correctness of the returned token data (correct indices returned)
+        for(let tokenData of obj) {
+            if(!await this.verifyTokenOwnership(tokenData.owner, tokenData.index, Buffer.from(tokenData.proof, "hex"))) throw new Error("Token ownership verification error!");
+        }
+
+        return obj.map(tokenData => {
+            return {
+                proof: Buffer.from(tokenData.proof, "hex"),
+                data: {
+                    owner: tokenData.owner,
+                    index: tokenData.index,
+                    url: this.getNftUrl(tokenData.index)
+                }
+            }
+        });
+    }
+
+    /**
+     * Call indexer to fetch owned tokens
+     *
      * @param address
      * @param verify
      */
@@ -156,18 +193,44 @@ export class cNFTCollection {
         const signerAddress = await this.client.signer.getAddress();
         if(data.data.owner!=signerAddress) throw new Error("Token not owned by signer!");
 
-        const transaction = await this.contract.transfer(tokenIndex, recipient, "0x"+data.proof.toString("hex"));
+        const transaction = await this.contract.transfer(tokenIndex, recipient, "0x"+data.proof.toString("hex"), {
+            gasLimit: 100000
+        });
 
         const receipt = await transaction.wait();
         if (receipt.status === 0) throw new Error("Transfer transaction failed");
 
-        // transaction.chainId = await this.client.signer.getChainId();
-        // transaction.gasLimit = BigNumber.from(80000);
-        // transaction.gasPrice = await this.client.signer.getGasPrice();
-        // transaction.nonce = await this.client.signer.getTransactionCount(signerAddress);
-        //
-        // const submittedTx = await this.client.signer.sendTransaction(transaction);
-        // const receipt = await submittedTx.wait();
+        return receipt.transactionHash;
+    }
+
+    async transferBatch(dst: {
+        index: number,
+        recipient: string
+    }[]) {
+        if(dst.length>6) throw new Error("Max num of transfers is 6!");
+
+        const allTokens = await this.getAllTokens(true);
+
+        const signerAddress = await this.client.signer.getAddress();
+
+        const indexes: number[] = [];
+        const addresses: string[] = [];
+        const proofs: Buffer[] = [];
+        for(let destination of dst) {
+            if(allTokens[destination.index].owner!=signerAddress) throw new Error("Token not owned by signer!");
+            const merkleTree = createMerkleTree(this.contractData.depth, allTokens.map(token => Buffer.from(token.owner.substring(2), "hex")));
+            indexes.push(destination.index);
+            addresses.push(destination.recipient);
+            proofs.push(Buffer.concat(getMerkleProof(merkleTree, destination.index)));
+            allTokens[destination.index].owner = destination.recipient;
+        }
+
+        const transaction = await this.contract.transferBatch(indexes, addresses, "0x"+Buffer.concat(proofs).toString("hex"), {
+            gasLimit: 200000
+        });
+
+        const receipt = await transaction.wait();
+        if (receipt.status === 0) throw new Error("Transfer transaction failed");
 
         return receipt.transactionHash;
     }

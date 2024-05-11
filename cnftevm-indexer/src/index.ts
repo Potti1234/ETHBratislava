@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const rpcUrl = "https://sepolia.infura.io/v3/dcc43582332146c8b223e180181247c7";
+const rpcUrl = "https://sepolia.drpc.org";
 const provider = new providers.JsonRpcProvider(rpcUrl);
 
 type StoredData = {
@@ -105,6 +105,39 @@ function setupExpress() {
             proof: Buffer.concat(merkleProof).toString("hex"),
             owner: data.addresses[tokenIndex]
         });
+    });
+
+    app.get("/:contractId/token", async (req, res) => {
+        const indexesStr: string = req.query.indexes as any;
+        const contractId = req.params.contractId;
+
+        const indexesArr = indexesStr.split(",");
+        const indexes = indexesArr.map(index => parseInt(index));
+
+        let data: StoredData;
+        try {
+            data = JSON.parse((await fs.readFile(contractId+".json")).toString());
+        } catch (e) {
+            console.error(e);
+            res.status(400).send("Contract data not found");
+            return;
+        }
+        await syncToLatest(contractId, data);
+
+        const merkleTree = createMerkleTree(data.depth, data.addresses.map(address => Buffer.from(address.substring(2), "hex")));
+        const tokens: {
+            owner: string,
+            proof: string,
+            index: number
+        }[] = indexes.map(index => {
+            return {
+                index,
+                owner: data.addresses[index],
+                proof: Buffer.concat(getMerkleProof(merkleTree, index)).toString("hex")
+            }
+        });
+
+        res.json(tokens);
     });
 
     app.listen(4000);

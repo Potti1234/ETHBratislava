@@ -40,6 +40,23 @@ export function createMerkleTree(depth: number, leafs: Buffer[]): Buffer[][] {
 
 }
 
+export function getMerkleProof(merkleTree: Buffer[][], proofIndex: number): Buffer[] {
+
+    const proof: Buffer[] = Array(merkleTree.length-1);
+
+    for(let layerIndex = 0; layerIndex<merkleTree.length-1; layerIndex++) {
+        const position = proofIndex & 0b1; //0 - left, 1 - right
+        const layer = merkleTree[layerIndex];
+
+        proof[layerIndex] = position===0 ? layer[proofIndex+1] : layer[proofIndex-1];
+
+        proofIndex = proofIndex >> 1;
+    }
+
+    return proof;
+
+}
+
 export function getMerkleRoot(depth: number, leafs: Buffer[]): Buffer {
     const merkleTree = createMerkleTree(depth, leafs);
     return merkleTree[merkleTree.length-1][0];

@@ -25,7 +25,9 @@ export class cNFTClient {
      * Mints new collection, mints recipients.length cNFTs
      */
     async mint(baseUrl: string, recipients: string[], uploadToIndexer: boolean = true): Promise<cNFTCollection> {
-        const deployment = await this.factory.deploy();
+        const deployment = await this.factory.deploy({
+            gasLimit: 3000000
+        });
 
         return await this.mintToExisting(deployment.address, baseUrl, recipients, uploadToIndexer);
     }
@@ -58,7 +60,9 @@ export class cNFTClient {
 
         const contract = this.factory.attach(contractAddress);
 
-        const transaction = await contract.mint(baseUrl, amount, merkleRootString, merkleRootString, depth);
+        const transaction = await contract.mint(baseUrl, amount, merkleRootString, merkleRootString, depth, {
+            gasLimit: 200000
+        });
 
         const receipt = await transaction.wait();
         if (receipt.status === 0) throw new Error("Mint transaction failed");
