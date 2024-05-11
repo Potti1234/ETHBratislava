@@ -50,7 +50,10 @@ export class cNFTClient {
                 headers: {
                     "content-type": "application/json"
                 },
-                body: JSON.stringify(recipients)
+                body: JSON.stringify({
+                    addresses: recipients,
+                    depth
+                })
             });
 
             if(!resp.ok) throw new Error("Cannot post off-chain data to indexer!");
@@ -61,7 +64,7 @@ export class cNFTClient {
         const contract = this.factory.attach(contractAddress);
 
         const transaction = await contract.mint(baseUrl, amount, merkleRootString, merkleRootString, depth, {
-            gasLimit: 200000
+            gasLimit: 300000
         });
 
         const receipt = await transaction.wait();

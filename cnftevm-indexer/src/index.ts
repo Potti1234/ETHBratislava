@@ -8,7 +8,7 @@ import {Interface} from "ethers/lib/utils";
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit: "50mb"}));
 
 const rpcUrl = "https://sepolia.drpc.org";
 const provider = new providers.JsonRpcProvider(rpcUrl);
