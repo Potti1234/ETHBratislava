@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Badge } from "./ui/badge";
 
-export default function MetamaskLoginButton() {
+export default function MetamaskLoginButton({setAddressCallback}) {
     const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
     const [accounts, setAccounts] = useState([]);
 
@@ -16,6 +16,8 @@ export default function MetamaskLoginButton() {
                     setIsMetamaskConnected(false);
                 } else {
                     setAccounts(accounts);
+                    console.log(accounts[0]);
+                    setAddressCallback(accounts[0]);
                     setIsMetamaskConnected(true);
                 }
             } catch (error) {
@@ -35,8 +37,6 @@ export default function MetamaskLoginButton() {
             setIsMetamaskConnected(false);
             connectToMetamask();
         }
-
-        console.log('selectedAddress', selectedAddress);
     };
 
     return (
