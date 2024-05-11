@@ -191,7 +191,7 @@ export class cNFTCollection {
         const data = await this.getTokenData(tokenIndex);
 
         const signerAddress = await this.client.signer.getAddress();
-        if(data.data.owner!=signerAddress) throw new Error("Token not owned by signer!");
+        if(data.data.owner.toLowerCase()!=signerAddress.toLowerCase()) throw new Error("Token not owned by signer!");
 
         const transaction = await this.contract.transfer(tokenIndex, recipient, "0x"+data.proof.toString("hex"), {
             gasLimit: 100000
@@ -217,7 +217,7 @@ export class cNFTCollection {
         const addresses: string[] = [];
         const proofs: Buffer[] = [];
         for(let destination of dst) {
-            if(allTokens[destination.index].owner!=signerAddress) throw new Error("Token not owned by signer!");
+            if(allTokens[destination.index].owner.toLowerCase()!==signerAddress.toLowerCase()) throw new Error("Token not owned by signer!");
             const merkleTree = createMerkleTree(this.contractData.depth, allTokens.map(token => Buffer.from(token.owner.substring(2), "hex")));
             indexes.push(destination.index);
             addresses.push(destination.recipient);
