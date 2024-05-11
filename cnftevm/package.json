@@ -1,0 +1,20 @@
+{
+  "name": "cnftevm",
+  "version": "1.0.4",
+  "description": "",
+  "author": "",
+  "main": "./dist/index.js",
+  "types:": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "/dist",
+    "/src"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.12.11",
+    "ethers": "^5.7.2"
+  }
+}

@@ -1,0 +1,303 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint16",
+				"name": "amount",
+				"type": "uint16"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes20",
+				"name": "dataRoot",
+				"type": "bytes20"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes20",
+				"name": "ownersRoot",
+				"type": "bytes20"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "rootUrl",
+				"type": "string"
+			}
+		],
+		"name": "Mint",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint16",
+				"name": "nftIndex",
+				"type": "uint16"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "getRootDataUrl",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "nftIndex",
+				"type": "uint16"
+			},
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "proof",
+				"type": "bytes"
+			}
+		],
+		"name": "has",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "rootDataUrl",
+				"type": "string"
+			},
+			{
+				"internalType": "uint16",
+				"name": "amount",
+				"type": "uint16"
+			},
+			{
+				"internalType": "bytes20",
+				"name": "dataRoot",
+				"type": "bytes20"
+			},
+			{
+				"internalType": "bytes20",
+				"name": "ownersRoot",
+				"type": "bytes20"
+			},
+			{
+				"internalType": "uint256",
+				"name": "depth",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "rootDataUrl",
+				"type": "string"
+			},
+			{
+				"internalType": "uint16",
+				"name": "amount",
+				"type": "uint16"
+			},
+			{
+				"internalType": "bytes20",
+				"name": "dataRoot",
+				"type": "bytes20"
+			},
+			{
+				"internalType": "bytes",
+				"name": "owners",
+				"type": "bytes"
+			},
+			{
+				"internalType": "uint256",
+				"name": "depth",
+				"type": "uint256"
+			}
+		],
+		"name": "mintTransparent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "rootDataUrl",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes20",
+				"name": "dataRoot",
+				"type": "bytes20"
+			},
+			{
+				"internalType": "bytes20",
+				"name": "ownersRoot",
+				"type": "bytes20"
+			},
+			{
+				"internalType": "bytes",
+				"name": "owners",
+				"type": "bytes"
+			},
+			{
+				"internalType": "uint256",
+				"name": "depth",
+				"type": "uint256"
+			}
+		],
+		"name": "mintTransparentOptimistic",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "nftIndex",
+				"type": "uint16"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "proof",
+				"type": "bytes"
+			}
+		],
+		"name": "transfer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16[]",
+				"name": "nftIndex",
+				"type": "uint16[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "recipient",
+				"type": "address[]"
+			},
+			{
+				"internalType": "bytes",
+				"name": "proof",
+				"type": "bytes"
+			}
+		],
+		"name": "transferBatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "nftIndex",
+				"type": "uint16"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "proof",
+				"type": "bytes"
+			}
+		],
+		"name": "verifyData",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "nftIndex",
+				"type": "uint16"
+			},
+			{
+				"internalType": "bytes20",
+				"name": "dataHash",
+				"type": "bytes20"
+			},
+			{
+				"internalType": "bytes",
+				"name": "proof",
+				"type": "bytes"
+			}
+		],
+		"name": "verifyDataHash",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
