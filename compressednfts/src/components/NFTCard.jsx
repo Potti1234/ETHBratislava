@@ -7,20 +7,20 @@ import {
 import { Button } from "./ui/button"
 import { Label } from "./ui/label"
 import { Input } from "./ui/input"
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { toast } from "sonner";
 
-export default function NFTCard({ title, url, address, yourAddress}) {
+export default function NFTCard({ title, url, address, yourAddress, contract}) {
 
     const [transferAddress, setTransferAddress] = useState("");
 
     const transfer = () => {
-        console.log("Transfering to: ", transferAddress);
-        toast("NFT has been transfered to " + transferAddress, {
-            description: "Gas cost: 0.0001 ETH",
-            type: "success",
-            duration: 5000,
-          })
+            contract.transfer(title,transferAddress).then(() => {
+                toast("NFT has been transfered to " + transferAddress, {
+                    type: "success",
+                    duration: 5000,
+                  })
+            })
     }
 
     return (
@@ -29,7 +29,7 @@ export default function NFTCard({ title, url, address, yourAddress}) {
                 <CardTitle className="text-sm font-medium">{title}</CardTitle>
             </CardHeader>
             <CardContent>
-                <img src={url} alt={title}  />
+                <img loading="lazy" src={url} alt={title}  />
             </CardContent>
             <CardContent>
                 <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -38,7 +38,7 @@ export default function NFTCard({ title, url, address, yourAddress}) {
                 </div>
             </CardContent>
 
-            {address === address && 
+            {address === yourAddress && 
             <CardContent>
                 <div className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <Input onChangeCapture={e => setTransferAddress(e.currentTarget.value)} type="addressTo" id="addressTo" placeholder={"Transfer to"} value={transferAddress} />
